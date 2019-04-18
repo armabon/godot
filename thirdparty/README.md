@@ -1,12 +1,18 @@
 # Third party libraries
 
+## arcore
+- Upstream: https://github.com/google-ar/arcore-android-sdk
+- Version: 1.5.0
+- License: Apache 2.0
+
+Only file copied from upstream is arcore_c_api.h
+Note that building the Android build will download additional binaries that fall under Googles own licenses. 
 
 ## assimp
 
 - Upstream: http://github.com/assimp/assimp
 - Version: git (308db73d0b3c2d1870cd3e465eaa283692a4cf23)
 - License: BSD-3-Clause
-
 
 ## b2d_convexdecomp
 

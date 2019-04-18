@@ -66,6 +66,7 @@ GodotJavaWrapper::GodotJavaWrapper(JNIEnv *p_env, jobject p_godot_instance) {
 	_is_activity_resumed = p_env->GetMethodID(cls, "isActivityResumed", "()Z");
 	_vibrate = p_env->GetMethodID(cls, "vibrate", "(I)V");
 	_get_input_fallback_mapping = p_env->GetMethodID(cls, "getInputFallbackMapping", "()Ljava/lang/String;");
+	_get_display_rotation = p_env->GetMethodID(cls, "getDisplayRotation", "()I");
 }
 
 GodotJavaWrapper::~GodotJavaWrapper() {
@@ -258,5 +259,14 @@ void GodotJavaWrapper::vibrate(int p_duration_ms) {
 	if (_vibrate) {
 		JNIEnv *env = ThreadAndroid::get_env();
 		env->CallVoidMethod(godot_instance, _vibrate, p_duration_ms);
+	}
+}
+
+int GodotJavaWrapper::get_display_rotation() {
+	if (_get_display_rotation) {
+		JNIEnv *env = ThreadAndroid::get_env();
+		return env->CallIntMethod(godot_instance, _get_display_rotation);
+	} else {
+		return 0;
 	}
 }
